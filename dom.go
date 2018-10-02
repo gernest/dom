@@ -20,10 +20,7 @@ func (d Dom) Bool() bool {
 }
 
 func (d Dom) Call(m string, args ...interface{}) vected.Value {
-	if m == "keys" {
-		Log(d.value)
-	}
-	return New(d.value.Call(m, args...))
+	return New(d.value.Call(m, toArgs(args...)...))
 }
 
 func (d Dom) Float() float64 {
@@ -43,7 +40,18 @@ func (d Dom) Int() int {
 }
 
 func (d Dom) Invoke(args ...interface{}) vected.Value {
-	return New(d.value.Invoke(args...))
+	return New(d.value.Invoke(toArgs(args...)...))
+}
+
+func toArgs(args ...interface{}) (a []interface{}) {
+	for _, v := range args {
+		if o, ok := v.(*Dom); ok {
+			a = append(a, o.value)
+			continue
+		}
+		a = append(a, v)
+	}
+	return
 }
 
 func (d Dom) Set(p string, x interface{}) {
