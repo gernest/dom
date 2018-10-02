@@ -11,8 +11,8 @@ type Dom struct {
 	value js.Value
 }
 
-func New(v js.Value) Dom {
-	return Dom{value: v}
+func New(v js.Value) *Dom {
+	return &Dom{value: v}
 }
 
 func (d Dom) Bool() bool {
