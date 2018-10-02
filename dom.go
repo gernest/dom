@@ -31,7 +31,6 @@ func (d Dom) Get(key string) vected.Value {
 	defer func() {
 		if e := recover(); e != nil {
 			Log(d.value)
-			panic(e)
 		}
 	}()
 	return New(d.value.Get(key))
