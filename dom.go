@@ -1,6 +1,7 @@
 package dom
 
 import (
+	"fmt"
 	"syscall/js"
 
 	"github.com/gernest/vected"
@@ -33,6 +34,7 @@ func (d Dom) Get(key string) vected.Value {
 			Log(d.value)
 		}
 	}()
+	fmt.Println(d.Type())
 	return New(d.value.Get(key))
 }
 
