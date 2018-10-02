@@ -49,7 +49,7 @@ func toArgs(args ...interface{}) (a []interface{}) {
 			a = append(a, o.value)
 			continue
 		}
-		a = append(a, v)
+		a = append(a, js.ValueOf(v))
 	}
 	return
 }
