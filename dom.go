@@ -34,7 +34,7 @@ func (d Dom) Get(key string) vected.Value {
 			Log(d.value)
 		}
 	}()
-	fmt.Println(d.Type())
+	fmt.Println(d.Type(), key)
 	return New(d.value.Get(key))
 }
 
