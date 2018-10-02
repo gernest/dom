@@ -20,6 +20,9 @@ func (d Dom) Bool() bool {
 }
 
 func (d Dom) Call(m string, args ...interface{}) vected.Value {
+	if m == "keys" {
+		Log(d.value)
+	}
 	return New(d.value.Call(m, args...))
 }
 
@@ -53,4 +56,10 @@ func (d Dom) String() string {
 
 func (d Dom) Type() vected.Type {
 	return vected.Type(d.value.Type())
+}
+
+var console = js.Global().Get("console")
+
+func Log(v ...interface{}) {
+	console.Call("log", v...)
 }
